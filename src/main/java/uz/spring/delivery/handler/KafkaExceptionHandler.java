@@ -3,11 +3,14 @@ package uz.spring.delivery.handler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.TopicPartition;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.stereotype.Component;
+import uz.spring.delivery.dto.DlqDto;
 
 @Slf4j
 @Component
@@ -15,9 +18,9 @@ public class KafkaExceptionHandler implements CommonErrorHandler {
 
     private final DeadLetterPublishingRecoverer recoverer;
 
-    public KafkaExceptionHandler(KafkaTemplate<Object, Object> kafkaTemplate) {
+    public KafkaExceptionHandler(@Qualifier("dlqTopic") KafkaTemplate<String, DlqDto> kafkaTemplate) {
         this.recoverer = new DeadLetterPublishingRecoverer(kafkaTemplate,
-                (record, ex) -> new org.apache.kafka.common.TopicPartition(record.topic() + "-DLT", record.partition()));
+                (record, ex) -> new TopicPartition(record.topic() + "-DLT", record.partition()));
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import uz.spring.delivery.configuration.props.KafkaProps;
+import uz.spring.delivery.dto.DlqDto;
 import uz.spring.delivery.dto.OrderDto;
 
 import java.util.HashMap;
@@ -39,6 +40,11 @@ public class ProducerConfiguration {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
         return props;
+    }
+
+    @Bean("dlqTopic")
+    public KafkaTemplate<String, DlqDto> dlqTemplate() {
+        return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(objectDeserializerConfigs()));
     }
 
     @Bean("orderTopic")
