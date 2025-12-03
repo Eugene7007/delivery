@@ -13,7 +13,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
 import uz.spring.delivery.configuration.props.KafkaProps;
-import uz.spring.delivery.dto.request.OrderDto;
+import uz.spring.delivery.dto.response.OrderResponseDto;
 import uz.spring.delivery.handler.KafkaExceptionHandler;
 
 import java.util.HashMap;
@@ -44,8 +44,8 @@ public class ConsumerConfiguration {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, OrderDto> deliveryFactory() {
-        return buildContainerFactory(OrderDto.class);
+    public ConcurrentKafkaListenerContainerFactory<String, OrderResponseDto> deliveryFactory() {
+        return buildContainerFactory(OrderResponseDto.class);
     }
 
     private <T> ConcurrentKafkaListenerContainerFactory<String, T> buildContainerFactory(Class<T> type) {

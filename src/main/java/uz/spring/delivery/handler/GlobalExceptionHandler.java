@@ -44,6 +44,7 @@ public class GlobalExceptionHandler {
         var errorBody = ErrorDto
                 .builder()
                 .code(ex.getCode())
+                .type(ex.getErrorType())
                 .message(ex.getMessage())
                 .build();
 

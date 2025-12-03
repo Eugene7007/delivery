@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
+import uz.spring.delivery.constant.enums.ErrorType;
 
 @Getter
 @ToString
@@ -13,11 +14,13 @@ public class ApplicationException extends RuntimeException {
     int code;
     String message;
     HttpStatus status;
+    ErrorType errorType;
 
-    public ApplicationException(int code, String message, HttpStatus status) {
+    public ApplicationException(int code, String message, ErrorType errorType, HttpStatus status) {
         super(message);
         this.code = code;
-        this.message = message;
         this.status = status;
+        this.message = message;
+        this.errorType = errorType;
     }
 }

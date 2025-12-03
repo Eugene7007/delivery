@@ -21,7 +21,7 @@ public class OrderProducer {
 
     public OrderProducer(KafkaProps kafkaProps,
                          @Qualifier("orderTopic")
-                       KafkaTemplate<String, OrderDto> orderTemplate) {
+                         KafkaTemplate<String, OrderDto> orderTemplate) {
         this.kafkaProps = kafkaProps;
         this.orderTemplate = orderTemplate;
     }
