@@ -16,5 +16,6 @@ public interface OrderMapper {
     @Mapping(target = "status", constant = "NEW")
     OrderEntity toEntity(OrderRequestDto dto);
 
+    @Mapping(target = "merchant", source = "merchant.name")
     OrderResponseDto toDto(OrderEntity entity);
 }

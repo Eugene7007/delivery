@@ -20,6 +20,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import uz.spring.delivery.dto.ErrorDto;
 import uz.spring.delivery.exception.ApplicationException;
 
+import java.util.List;
+
 import static uz.spring.delivery.constant.enums.Error.EXTERNAL_SERVICE_FAILED_ERROR_CODE;
 import static uz.spring.delivery.constant.enums.Error.HANDLER_NOT_FOUND_ERROR_CODE;
 import static uz.spring.delivery.constant.enums.Error.INTERNAL_SERVICE_ERROR_CODE;

@@ -18,6 +18,8 @@ import uz.spring.delivery.dto.request.OrderRequestDto;
 import uz.spring.delivery.dto.response.OrderResponseDto;
 import uz.spring.delivery.service.OrderService;
 
+import java.sql.SQLDataException;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -37,9 +39,19 @@ public class OrderController {
         return ResponseEntity.ok(orderService.get(id));
     }
 
-    @PutMapping("/{id}")
-    public void update(@RequestParam String description, @PathVariable Long id){
-        orderService.update(description, id);
+    @PutMapping("/update-01/{id}")
+    public void update01(@RequestParam String description, @PathVariable Long id) throws SQLDataException {
+        orderService.update01(description, id);
+    }
+
+    @PutMapping("/update-02/{id}")
+    public void update02(@RequestParam String description, @PathVariable Long id){
+        orderService.update02(description, id);
+    }
+
+    @PutMapping("/update-03/{id}")
+    public void update03(@RequestParam String description, @PathVariable Long id){
+        orderService.update03(description, id);
     }
 
     @DeleteMapping("/{id}")
