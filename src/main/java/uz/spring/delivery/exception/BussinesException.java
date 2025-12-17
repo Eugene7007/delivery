@@ -9,14 +9,14 @@ import uz.spring.delivery.constant.enums.ErrorType;
 @Getter
 @ToString
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
-public class ApplicationException extends RuntimeException {
+public class BussinesException extends RuntimeException {
 
     int code;
     String message;
     HttpStatus status;
     ErrorType errorType;
 
-    public ApplicationException(int code, String message, ErrorType errorType, HttpStatus status) {
+    public BussinesException(int code, String message, ErrorType errorType, HttpStatus status) {
         super(message);
         this.code = code;
         this.status = status;

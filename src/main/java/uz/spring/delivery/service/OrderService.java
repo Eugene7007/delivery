@@ -11,7 +11,7 @@ public interface OrderService {
 
     void delete(Long id);
     OrderResponseDto get(Long id);
-    void update01(String description, Long id) throws SQLDataException;
-    void update02(String description, Long id);
-    void update03(String description, Long id);
+    void update(String description, Long id) throws SQLDataException;
+
+    OrderResponseDto testGcp(Long id);
 }

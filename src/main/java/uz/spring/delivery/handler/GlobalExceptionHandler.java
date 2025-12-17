@@ -18,9 +18,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import uz.spring.delivery.dto.ErrorDto;
-import uz.spring.delivery.exception.ApplicationException;
-
-import java.util.List;
+import uz.spring.delivery.exception.BussinesException;
 
 import static uz.spring.delivery.constant.enums.Error.EXTERNAL_SERVICE_FAILED_ERROR_CODE;
 import static uz.spring.delivery.constant.enums.Error.HANDLER_NOT_FOUND_ERROR_CODE;
@@ -39,8 +37,8 @@ import static uz.spring.delivery.constant.enums.ErrorType.VALIDATION;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ApplicationException.class)
-    private ResponseEntity<ErrorDto> handleApplicationException(ApplicationException ex) {
+    @ExceptionHandler(BussinesException.class)
+    private ResponseEntity<ErrorDto> handleApplicationException(BussinesException ex) {
         log.error("Error: {}", ex.getMessage());
 
         var errorBody = ErrorDto

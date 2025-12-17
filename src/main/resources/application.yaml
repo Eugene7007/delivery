@@ -3,7 +3,9 @@ spring:
   application:
     name: delivery
 
-  # JPA configuration
+
+
+  # DB configuration
   datasource:
     url: jdbc:postgresql://localhost:5432/delivery
     username: user
@@ -29,6 +31,8 @@ spring:
         generate_statistics: true
         default_schema: postgres
 
+
+
   # Flyway configuration
   flyway:
     baseline-on-migrate: true
@@ -36,6 +40,46 @@ spring:
     validate-on-migrate: true
     baseline-version: 0
     schemas: postgres
+
+
+
+  # Redis configuration
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${REDIS_HOST:0.0.0.0}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:secure_redis_pass}
+      lettuce:
+        pool:
+          max-active: ${REDIS_POOL_LETTUCE_MAX_ACTIVE:32}
+          max-idle: ${REDIS_POOL_LETTUCE_MAX_IDLE:16}
+          min-idle: ${REDIS_POOL_LETTUCE_MIN_IDLE:8}
+          max-wait: ${REDIS_POOL_LETTUCE_MAX_WAIT:2000}
+      database: 0
+      timeout: ${REDIS_CONNECT_TIMEOUT:2000}
+      default-ttl: ${REDIS_DEFAULT_TTL:30000}
+      order-ttl: ${REDIS_ORDER_TTL:5000}
+      merchant-ttl: ${REDIS_MERCHANT_TTL:5000}
+
+
+
+# Tomcat configuration (milliseconds)
+server:
+  port: ${SERVER_PORT:8081}
+  tomcat:
+    accept-count: ${TOMCAT_ACCEPT_COUNT:100}
+    max-connections: ${TOMCAT_MAX_CONNECTIONS:1000}
+    threads:
+      max: ${TOMCAT_MAX_THREADS:200}
+      min-spare: ${TOMCAT_MIN_SPARE_THREADS:20}
+  compression:
+    enabled: true
+    min-response-size: 2KB
+    mime-types: application/json, application/xml, text/xml, text/plain
+
+
 
 # Kafka
 kafka:
@@ -49,14 +93,3 @@ kafka:
   batchSizeConfig: ${KAFKA_BATCH_SIZE_CONFIG:16384}
   bufferMemoryConfig: ${KAFKA_BUFFER_MEMORY_CONFIG:32768}
   autoOffsetResetConfig: ${KAFKA_AUTO_OFFSET_RESET_CONFIG}
-  saslProtocol: ${KAFKA_SASL_PROTOCOL}
-  saslMechanism: ${KAFKA_SASL_MECHANISM}
-  saslUsername: ${KAFKA_SASL_USERNAME}
-  saslPassword: ${KAFKA_SASL_PASSWORD}
-
-  topics:
-
-# Tomcat configuration
-server:
-  port: 8081
-

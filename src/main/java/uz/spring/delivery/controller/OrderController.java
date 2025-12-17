@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,32 +32,27 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponseDto> create(@RequestBody OrderRequestDto requestDto){
+    public ResponseEntity<OrderResponseDto> create(@RequestBody OrderRequestDto requestDto) {
         return ResponseEntity.ok(orderService.create(requestDto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> get(@PathVariable Long id){
+    public ResponseEntity<OrderResponseDto> get(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.get(id));
+    }
+
+    @GetMapping("/gcp/{id}")
+    public ResponseEntity<OrderResponseDto> testGcp(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.testGcp(id));
     }
 
     @PutMapping("/update-01/{id}")
     public void update01(@RequestParam String description, @PathVariable Long id) throws SQLDataException {
-        orderService.update01(description, id);
-    }
-
-    @PutMapping("/update-02/{id}")
-    public void update02(@RequestParam String description, @PathVariable Long id){
-        orderService.update02(description, id);
-    }
-
-    @PutMapping("/update-03/{id}")
-    public void update03(@RequestParam String description, @PathVariable Long id){
-        orderService.update03(description, id);
+        orderService.update(description, id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         orderService.delete(id);
     }
 }
