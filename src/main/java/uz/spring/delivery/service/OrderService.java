@@ -1,5 +1,6 @@
 package uz.spring.delivery.service;
 
+import org.springframework.data.domain.Page;
 import uz.spring.delivery.dto.request.OrderRequestDto;
 import uz.spring.delivery.dto.response.OrderResponseDto;
 
@@ -14,4 +15,6 @@ public interface OrderService {
     void update(String description, Long id) throws SQLDataException;
 
     OrderResponseDto testGcp(Long id);
+
+    Page<OrderResponseDto> testPagination(int size, int page);
 }

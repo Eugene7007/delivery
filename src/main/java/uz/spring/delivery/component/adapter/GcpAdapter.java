@@ -18,11 +18,10 @@ public class GcpAdapter {
         var result = restClient
                 .get()
                 .uri(
-                "https://api.ipify.org")
+                        "UZCARD_URL")
                 .retrieve()
                 .body(String.class);
 
         log.info("{}", result);
     }
-
 }

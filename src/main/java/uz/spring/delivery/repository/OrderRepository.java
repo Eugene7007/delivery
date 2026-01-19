@@ -2,6 +2,8 @@ package uz.spring.delivery.repository;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import uz.spring.delivery.constant.enums.Status;
 import uz.spring.delivery.entity.OrderEntity;
 
@@ -15,4 +17,10 @@ public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
 
     @EntityGraph(attributePaths = {"merchant"})
     List<OrderEntity> findByStatus(Status status);
+
+    @Query("""
+                SELECT o 
+                FROM OrderEntity o
+               WHERE o.status = :status""")
+    Optional<OrderEntity> findByCode(@Param("status") Status status);
 }

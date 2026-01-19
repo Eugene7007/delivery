@@ -55,4 +55,9 @@ public class OrderController {
     public void delete(@PathVariable Long id) {
         orderService.delete(id);
     }
+
+    @GetMapping("/pagination")
+    public Page<OrderResponseDto> testPagination(@RequestParam("size") int size, @RequestParam("page") int page) {
+        return orderService.testPagination(size, page);
+    }
 }

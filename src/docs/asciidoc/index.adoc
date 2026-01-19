@@ -1,0 +1,189 @@
+= Payment service api documentation
+This docs for developers
+:doctype: book
+:toc: left
+
+[[payment]]
+== Документация по payment service
+
+[[create-payment]]
+=== Создание транзакции
+
+Данный метод создает транзакцию в системе.
+
+request body :
+
+include::{snippets}/payments/create/request-fields.adoc[]
+
+request:
+
+include::{snippets}/payments/create/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/create/curl-request.adoc[]
+
+response body:
+
+include::{snippets}/payments/create/response-fields.adoc[]
+
+[[create-payment-one-piece]]
+=== Создание 1 сумовой транзакции
+
+Данный метод создает транзакцию в системе для 1 сума.
+
+request body :
+
+include::{snippets}/payments/create/one_piece/request-fields.adoc[]
+
+request:
+
+include::{snippets}/payments/create/one_piece/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/create/one_piece/curl-request.adoc[]
+
+response body:
+
+include::{snippets}/payments/create/one_piece/response-fields.adoc[]
+
+[[hold-payment]]
+=== Холдирование транзакции
+
+Данный метод холдирует транзакцию, если транзакция не прошла и выдала ошибку, то следует проверить статус транзакции.
+
+path parameters:
+
+include::{snippets}/payments/hold/path-parameters.adoc[]
+
+request:
+
+include::{snippets}/payments/hold/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/hold/curl-request.adoc[]
+
+[[cancel-payment]]
+=== Отмена транзакции
+
+Данный метод отменяет транзакцию, если транзакция не прошла и выдала ошибку, то следует проверить статус транзакции.
+
+path parameters:
+
+include::{snippets}/payments/cancel/path-parameters.adoc[]
+
+request:
+
+include::{snippets}/payments/cancel/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/cancel/curl-request.adoc[]
+
+[[revert-payment]]
+=== Возврат транзакции
+
+Данный метод делает возврат денег уже подтвержденной транзакции, если транзакция не прошла и выдала ошибку, то следует проверить статус транзакции.
+
+path parameters:
+
+include::{snippets}/payments/revert/path-parameters.adoc[]
+
+request:
+
+include::{snippets}/payments/revert/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/revert/curl-request.adoc[]
+
+[[perform-payment]]
+=== Подтверждение транзакции
+
+Данный метод подтверждает транзакцию, если транзакция не прошла и выдала ошибку, то следует проверить статус транзакции.
+
+path parameters:
+
+include::{snippets}/payments/perform/path-parameters.adoc[]
+
+request:
+
+include::{snippets}/payments/perform/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/perform/curl-request.adoc[]
+
+[[check-trx-info-payment]]
+=== Проверка статуса транзакции
+
+Данный метод проверяет статус транзакции.
+
+path parameters:
+
+include::{snippets}/payments/info/path-parameters.adoc[]
+
+request:
+
+include::{snippets}/payments/info/http-request.adoc[]
+
+curl:
+
+include::{snippets}/payments/info/curl-request.adoc[]
+
+response body:
+
+include::{snippets}/payments/info/response-fields.adoc[]
+
+[[epos-create]]
+=== Добавление epos в систему
+
+Данный метод добавляет epos в систему.
+
+request parameters:
+
+include::{snippets}/eposes/create/request-body.adoc[]
+
+request:
+
+include::{snippets}/eposes/create/http-request.adoc[]
+
+curl:
+
+include::{snippets}/eposes/create/curl-request.adoc[]
+
+[[epos-delete]]
+=== Удаление epos из системы
+
+Данный метод удаляет epos из системы.
+
+request parameters:
+
+include::{snippets}/eposes/delete/request-parameters.adoc[]
+
+request:
+
+include::{snippets}/eposes/delete/http-request.adoc[]
+
+curl:
+
+include::{snippets}/eposes/delete/curl-request.adoc[]
+
+[[session-by-id]]
+=== Получение сессии по id
+
+Данный метод возвращает сессию по id.
+
+request:
+
+include::{snippets}/sessions/by_id/http-request.adoc[]
+
+curl:
+
+include::{snippets}/sessions/by_id/curl-request.adoc[]
+
+response
+
+include::{snippets}/sessions/by_id/response-body.adoc[]

@@ -6,6 +6,6 @@ import uz.spring.delivery.constant.enums.ErrorType;
 public class OrderNotFoundException extends BussinesException {
 
     public OrderNotFoundException(String message) {
-        super(10011, message, ErrorType.INTERNAL, HttpStatus.NOT_FOUND);
+        super(10011, message, ErrorType.INTERNAL, HttpStatus.CONFLICT);
     }
 }
