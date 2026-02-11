@@ -75,6 +75,7 @@ public class OrderServiceImpl implements OrderService {
     )
     @Transactional(readOnly = true)
     public OrderResponseDto get(Long id) {
+        log.info("get order {}", id);
          return orderRepository
                 .findById(id)
                 .filter(BaseEntity::isActive)

@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-every-3-minutes
+spec:
+  # Расписание в формате Unix-cron: минуты, часы, дни, месяцы, дни недели
+  schedule: "*/3 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: logger
+              image: busybox:1.36
+              # Команда, которая выведет текст в стандартный поток вывода (stdout)
+              command:
+                - /bin/sh
+                - -c
+                - date; echo "Привет! Я CronJob, и я пишу в лог каждые 3 минут."
+          # Важно: Job должен завершаться, поэтому restartPolicy — OnFailure или Never
+          restartPolicy: OnFailure
+  # Опционально: сколько успешных/неудачных запусков хранить в истории
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
